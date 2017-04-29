@@ -1,5 +1,11 @@
-/target
+/target/
+target/
+/target/*
+
 .project
 .tern-project
 .classpath
 .settings
+*.project
+*.classpath
+*.settings
