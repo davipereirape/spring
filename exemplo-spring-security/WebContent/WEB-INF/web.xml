@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns="http://java.sun.com/xml/ns/javaee" 
+  xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+   
+<!-- ContextLoaderListener determina quais configurações serão utilizadas, procurando por uma tag <context-param> 
+		e por contextConfigLocation. No exemplo acima definimos que o caminho se encontra em "/WEB-INF/spring/security.xml".  -->
+   
+         <display-name>Exemplo Spring Security</display-name>
+   
+         <welcome-file-list>
+               <welcome-file>/index.jsp</welcome-file>
+         </welcome-file-list>
+   
+         <!-- Configurações SPRING SECURITY -->
+         <context-param>
+               <param-name>contextConfigLocation</param-name>
+               <param-value>/WEB-INF/spring/security.xml</param-value>
+         </context-param>
+   
+         <listener>
+               <listener-class>
+                 	org.springframework.web.context.ContextLoaderListener
+               </listener-class>
+         </listener>
+         
+<!--  Devemos sempre atentar que o filtro do Spring Security (springSecurityFilterChain) deve ser o primeiro
+		 filtro, caso tenhamos mais filtros na aplicação. Isso garante uma maior segurança para a aplicação. -->
+		 
+<!--  DelegatingFilterProxy é um filtro servlet provido pelo Spring Web que delegará todo trabalho necessário para um bean
+ 		 do Spring que delega para a raiz ApplicationContext que deve implementar javax.servlet.Filter. -->
+         <filter>
+               <filter-name>springSecurityFilterChain</filter-name>
+               <filter-class>                     
+                 org.springframework.web.filter.DelegatingFilterProxy
+               </filter-class>
+         </filter>
+         <filter-mapping>
+               <filter-name>springSecurityFilterChain</filter-name>
+               <url-pattern>/*</url-pattern>
+               <dispatcher>REQUEST</dispatcher>
+           	   <dispatcher>ERROR</dispatcher>
+         </filter-mapping>
+         <!-- Fim Configurações SPRING SECURITY -->
+   
+  </web-app>
