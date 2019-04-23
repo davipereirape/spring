@@ -10,6 +10,6 @@
    <%  
          String txtInicial = "Página Inicial";
   %>
-  <%=txtInicial%>  
+  <%=txtInicial%>   
 </body>
 </html>
