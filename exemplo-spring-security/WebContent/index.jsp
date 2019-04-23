@@ -12,4 +12,4 @@
   %>
   <%=txtInicial%>   
 </body>
-</html>
+</html>   
